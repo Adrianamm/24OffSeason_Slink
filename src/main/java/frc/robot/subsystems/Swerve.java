@@ -64,7 +64,7 @@ public class Swerve extends SubsystemBase {
 
         SwerveModuleState[] swerveModuleStates = Constants.SwerveConstants.kinematics.toSwerveModuleStates(chassisSpeeds);
 
-        SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.SwerveConstants.kMaxSpeedTele);
+        SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.SwerveConstants.kMaxSpeedTele_MPS);
 
         for (SwerveModule m : modules) {
             m.setModuleState(swerveModuleStates[m.moduleNumber], Constants.SwerveConstants.kOpenLoop);
@@ -101,9 +101,9 @@ public class Swerve extends SubsystemBase {
       return positions;
     }
 
-    public Pose2d getPose(){
-      return RobotContainer.getLocalizedPose.get();
-    }
+    // public Pose2d getPose(){
+    //   return RobotContainer.getLocalizedPose.get();
+    // }
 
     public ChassisSpeeds getRobotRelativeSpeeds(){
       return Constants.SwerveConstants.kinematics.toChassisSpeeds(getStates());

@@ -20,6 +20,19 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+
+  /* Controllers :D */
+  private static final CommandXboxController drive = new CommandXboxController(0);
+
+  /* Drive controls */
+  private static final int translationAxis = XboxController.Axis.kLeftY.value;
+  private static final int strafeAxis = XboxController.Axis.kLeftX.value;
+  private static final int rotationAxis = XboxController.Axis.kRightX.value;
+
+  /* subsytems :) */
+  public static final Swerve s_Swerve = new Swerve();
+
+
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -60,4 +73,17 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
   }
+
+  private void setDefaultCommands() {
+    s_Swerve.setDefaultCommand(
+        new SwerveTeleCMD(
+            s_Swerve,
+            () -> -driver.getRawAxis(translationAxis),
+            () -> -driver.getRawAxis(strafeAxis),
+            () -> driver.getRawAxis(rotationAxis),
+            () -> driver.povDown().getAsBoolean(),
+            () -> driver.leftBumper().getAsBoolean()
+        )
+    );
+}
 }
