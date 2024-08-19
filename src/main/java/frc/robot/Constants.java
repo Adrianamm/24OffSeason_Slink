@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -88,7 +90,7 @@ public final class Constants {
         // Current limits avoid burn outs while driving
         public static class DriveCurrentLimit {
             
-            // I do not understand but I will go back to this
+
             public static final double KlimitToAmps = 30.0f;
             public static final double kMaxSpikeTime = 20.0f;
             public static final double kMaxSpikeAmps = 35.0f;
@@ -96,13 +98,13 @@ public final class Constants {
         }
 
         // Current limits avoid burn outs while turning
-        public static class AngleCurrentLimits{
+        public static class AngleCurrentLimit{
 
             // I do not understand but I will go back to this
-            public static final double KlimitToAmps = 20.0f;
+            public static final double kLimitToAmps = 20.0f;
             public static final double kMaxSpikeTime = 25.0f;
             public static final double kMaxSpikeAmps = 20.0f;
-            public static final int KSmartLimit = 20;
+            public static final int kSmartLimit = 20;
         }
 
         /*
@@ -131,7 +133,7 @@ public final class Constants {
         public static final double kDrivePositionConversionFactor = kDriveGearRatio * kWheelCircumfrence;
 
         // divides kDrivePositionConversionFactor by 60 (seconds in a minute) to get robot speed in distance per second
-        public static final double KDriveVelocityConverstionFactor = kDrivePositionConversionFactor / 60.0f;
+        public static final double kDriveVelocityConverstionFactor = kDrivePositionConversionFactor / 60.0f;
 
         // coverts the encoder position for the angle motor
         public static final double kAnglePositionConversionFactor = kAngleGearRatio * 360;
@@ -140,14 +142,14 @@ public final class Constants {
         public static final double kAngleVelocityConverstionFactor = kAnglePositionConversionFactor / 60.0f;
 
         // PID values for Drive (Slink numbers)
-        public final double kDriveP = 0.2;
-        public final double kDriveI = 0;
-        public final double kDriveD = 3;
+        public static final double kDriveP = 0.2;
+        public static final double kDriveI = 0;
+        public static final double kDriveD = 3;
 
         // PID values for Angle (Slink numbers)
-        public final double kAngleP = 0.05;
-        public final double kAngleI = 0;
-        public final double kAngleD = 0.002;
+        public static final double kAngleP = 0.05;
+        public static final double kAngleI = 0;
+        public static final double kAngleD = 0.002;
 
         // Feedforward values
         public static final double kDriveS = 0.375;
@@ -158,6 +160,12 @@ public final class Constants {
         public static final boolean angleMotorInverted = false;
         public static final boolean driveMotorInverted = false;
         public static final boolean KAbsoluteEncoderInverted = false;
+
+        public static final int kAngleCurrentLimit = 30;
+        
+        public static final CANSparkMax.IdleMode kDriveIdleMode = CANSparkMax.IdleMode.kBrake;
+        public static final CANSparkMax.IdleMode kAngleIdleMode = CANSparkMax.IdleMode.kCoast;
+
     }
 
     /*
